@@ -45,10 +45,10 @@ instance (GXmlPickler f, GXmlPickler g) => GXmlPickler (f :*: g) where
   gxpicklef f = (uncurry (:*:), \(a :*: b) -> (a, b)) `xpWrap` (gxpicklef f `xpPair` gxpicklef f)
 
 instance (Constructor c, GXmlPickler f) => GXmlPickler (C c f) where
-  gxpicklef f = xpElem (headToLower $ conName (undefined :: C c f r)) ((C, unC) `xpWrap` (gxpicklef f))
+  gxpicklef f = xpElem (formatElement $ conName (undefined :: C c f r)) ((C, unC) `xpWrap` (gxpicklef f))
 
 instance (Selector s, GXmlPickler f) => GXmlPickler (S s f) where
-  gxpicklef f = xpElem (headToLower $ selName (undefined :: S s f r)) ((S, unS) `xpWrap` gxpicklef f)
+  gxpicklef f = xpElem (formatElement $ selName (undefined :: S s f r)) ((S, unS) `xpWrap` gxpicklef f)
 
 -- | The generic pickler. Uses a tag for each constructor with the
 -- lower case constructor name, and a tag for each record field with
@@ -83,6 +83,23 @@ xpSum l r = (i, o) `xpWrap` xpEither l r
     o (L x) = Left x
     o (R x) = Right x
 
+formatElement :: String -> String
+formatElement = headToLower
+              . stripLeadingAndTrailingUnderscore
+
 headToLower :: String -> String
 headToLower []     = []
 headToLower (x:xs) = toLower x : xs
+
+stripLeadingAndTrailingUnderscore :: String -> String
+stripLeadingAndTrailingUnderscore = stripLeadingUnderscore
+                                  . stripTrailingUnderscore
+
+stripLeadingUnderscore :: String -> String
+stripLeadingUnderscore ('_':ls) = ls
+stripLeadingUnderscore ls       = ls
+
+stripTrailingUnderscore :: String -> String
+stripTrailingUnderscore ""         = ""
+stripTrailingUnderscore (x:'_':[]) = [x]
+stripTrailingUnderscore (x:xs)     = x : stripTrailingUnderscore xs
