@@ -11,7 +11,7 @@ Homepage:           http://github.com/silkapp/regular-xmlpickler
 License:            BSD3
 License-File:       LICENSE
 Build-Type:         Simple
-Extra-Source-Files: CHANGELOG
+Extra-Source-Files: CHANGELOG, README.md
 
 Library
   Build-Depends:    base    == 4.*
