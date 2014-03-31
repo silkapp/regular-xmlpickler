@@ -13,10 +13,10 @@ License-File:     LICENSE
 Build-Type:       Simple
 
 Library
-  Build-Depends:    base == 4.*
-                  , hxt >=8.3 && < 9.1
+  Build-Depends:    base    == 4.*
+                  , hxt     >= 9.2 && < 9.4
                   , regular >= 0.2 && < 0.4
-  
+
   HS-Source-Dirs:   src
   GHC-Options:      -Wall -fno-warn-orphans
   Exposed-Modules:  Generics.Regular.XmlPickler,

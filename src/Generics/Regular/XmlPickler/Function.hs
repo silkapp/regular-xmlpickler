@@ -20,7 +20,8 @@ module Generics.Regular.XmlPickler.Function (gxpickle, GXmlPickler(..)) where
 
 import Data.Char (toLower)
 import Generics.Regular
-import Text.XML.HXT.Arrow.Pickle
+import Text.XML.HXT.Core
+import Text.XML.HXT.Arrow.Pickle.Xml
 import Text.XML.HXT.Arrow.Pickle.Schema
 
 -- | The generic XmlPickler class. This gives generic xml picklers for
@@ -66,14 +67,17 @@ gxpickle = (to, from) `xpWrap` gxpicklef gxpickle
 -- try the second.
 xpEither :: PU a -> PU b -> PU (Either a b)
 xpEither ~(PU fl tl sa) ~(PU fr tr sb) = PU
-  (\(x, st) -> case x of
-                 Left  y -> fl (y, st)
-                 Right y -> fr (y, st))
-  (\x -> case tl x of
-           (Nothing, _) -> lmap (fmap Right) (tr x)
-           r            -> lmap (fmap Left) r)
+  (\x st -> case x of
+              Left  y -> fl y st
+              Right y -> fr y st)
+  (UP $ \x -> case runUP tl x of
+                -- When the first fails with error message es, try the second
+                (Left (es, _), _) ->
+                  case runUP tr x of
+                    (Left (es', _), st)  -> (Left (es ++ "\n" ++ es', st), st)
+                    (Right r, st) -> (Right (Right r), st)
+                (Right r, st) -> (Right (Left r), st))
   (sa `scAlt` sb)
-  where lmap f (a, b) = (f a, b)
 
 xpSum :: PU (f r) -> PU (g r) -> PU ((f :+: g) r)
 xpSum l r = (i, o) `xpWrap` xpEither l r
