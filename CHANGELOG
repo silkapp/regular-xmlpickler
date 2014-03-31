@@ -1,0 +1,9 @@
+0.1.2 -> 0.2
+  - Upgrade to hxt 9.2/9.3.
+  - Allow missing data for Maybe fields in records.
+  - Add instances for Text in addition to String.
+  - Strip leading and trailing underscores from element names.
+  - Only lowercase first character of element names.
+  - Add pickler for Either.
+  - Fixed recursive schema generation.
+  - Move from typLAB to Silk.
