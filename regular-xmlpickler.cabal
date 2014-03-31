@@ -16,6 +16,7 @@ Library
   Build-Depends:    base    == 4.*
                   , hxt     >= 9.2 && < 9.4
                   , regular >= 0.2 && < 0.4
+                  , text
 
   HS-Source-Dirs:   src
   GHC-Options:      -Wall -fno-warn-orphans
