@@ -31,7 +31,7 @@ class GXmlPickler f where
   gxpicklef :: PU a -> PU (f a)
 
 instance GXmlPickler I where
-  gxpicklef = xpWrap (I, unI)
+  gxpicklef pu = (xpWrap (I, unI) pu) { theSchema = ElemRef "data" }
 
 instance XmlPickler a => GXmlPickler (K a) where
   gxpicklef _ = (K, unK) `xpWrap` xpickle
