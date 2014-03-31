@@ -19,7 +19,7 @@ Library
                   , text
 
   HS-Source-Dirs:   src
-  GHC-Options:      -Wall -fno-warn-orphans
+  GHC-Options:      -Wall
   Exposed-Modules:  Generics.Regular.XmlPickler,
                     Generics.Regular.XmlPickler.Function,
                     Generics.Regular.XmlPickler.Instances
