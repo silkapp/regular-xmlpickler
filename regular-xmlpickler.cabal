@@ -24,3 +24,7 @@ Library
   Exposed-Modules:  Generics.Regular.XmlPickler,
                     Generics.Regular.XmlPickler.Function,
                     Generics.Regular.XmlPickler.Instances
+
+Source-Repository head
+  Type:     git
+  Location: https://github.com/silkapp/regular-xmlpickler.git
