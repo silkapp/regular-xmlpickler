@@ -4,10 +4,10 @@ Description:      Generic generation of HXT XmlPickler instances using Regular.
 Synopsis:         Generic generation of HXT XmlPickler instances using Regular.
 Category:         XML, Data
 Cabal-Version:    >= 1.6
-Author:           typLAB
-Copyright:        (c) 2009, typLAB
-Maintainer:       code@typlab.com
-Homepage:         http://github.com/typLAB/regular-xmlpickler
+Author:           Silk
+Copyright:        (c) 2014, Silk
+Maintainer:       code@silk.co
+Homepage:         http://github.com/silkapp/regular-xmlpickler
 License:          BSD3
 License-File:     LICENSE
 Build-Type:       Simple
