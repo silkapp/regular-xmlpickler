@@ -16,7 +16,12 @@
 -- from Generics.Regular.XmlPickler.Instances.
 --
 -------------------------------------------------------------------------------
-module Generics.Regular.XmlPickler.Function (gxpickle, GXmlPickler(..), formatElement) where
+module Generics.Regular.XmlPickler.Function
+  ( gxpickle
+  , GXmlPickler(..)
+  , formatElement
+  , xpEither
+  ) where
 
 import Data.Char (toLower)
 import Generics.Regular

@@ -35,7 +35,12 @@ fromBool :: Bool -> String
 fromBool True  = "true"
 fromBool False = "false"
 
--- * GXmlPickler instance for String.
+-- * Either instance for XmlPickler.
+
+instance (XmlPickler a, XmlPickler b) => XmlPickler (Either a b) where
+  xpickle = xpEither xpickle xpickle
+
+-- * GXmlPickler instance for String, Text and Maybes.
 
 instance GXmlPickler (K String) where
   gxpicklef _ = (K, unK) `xpWrap` xpText0
@@ -54,4 +59,3 @@ instance Selector s => GXmlPickler (S s (K (Maybe String))) where
 instance Selector s => GXmlPickler (S s (K (Maybe Text))) where
   gxpicklef _ = (S . K . fmap pack, fmap unpack . unK . unS)
          `xpWrap` xpOption (xpElem (formatElement $ selName (undefined :: S s f r)) xpText0)
-
