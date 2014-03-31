@@ -34,4 +34,8 @@ For example:
 > showPickled [] (User "Simon" True)
 
 "<user><name>Simon</name><admin>true</admin></user>"
+
+> unpickleDoc xpickle $ head $ xread "<user><name>Simon</name><admin>true</admin></user>" :: Maybe User
+
+Just (User {name = "Simon", admin = True})
 ```
