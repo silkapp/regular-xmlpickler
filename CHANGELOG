@@ -2,6 +2,8 @@
   - Upgrade to hxt 9.2/9.3.
   - Allow missing data for Maybe fields in records.
   - Add instances for Text in addition to String.
+  - More lenient Bool parsing.
+  - Better error reporting in Bool parsing.
   - Strip leading and trailing underscores from element names.
   - Only lowercase first character of element names.
   - Add pickler for Either.

@@ -17,7 +17,8 @@
 -------------------------------------------------------------------------------
 module Generics.Regular.XmlPickler.Instances() where
 
-import Data.Text
+import Data.Char (toLower)
+import Data.Text (Text, pack, unpack)
 import Generics.Regular
 import Generics.Regular.XmlPickler.Function
 import Text.XML.HXT.Arrow.Pickle
@@ -25,12 +26,18 @@ import Text.XML.HXT.Arrow.Pickle
 -- * Boolean instance for XmlPickler.
 
 instance XmlPickler Bool where
-  xpickle = (toBool, fromBool) `xpWrap` xpText
+  xpickle = (toBool, fromBool) `xpWrapEither` xpText
 
-toBool :: String -> Bool
-toBool "true"  = True
-toBool "false" = False
-toBool _       = error "No parse for bool in toBool (XmlPickler)."
+toBool :: String -> Either String Bool
+toBool k | k' == "yes"  = Right True
+         | k' == "true" = Right True
+         | k' == "on"   = Right True
+  where k' = map toLower k
+toBool k | k' == "no"    = Right False
+         | k' == "false" = Right False
+         | k' == "off"   = Right False
+  where k' = map toLower k
+toBool k                 = Left ("XmlPickler Bool: unexpected value: " ++ k)
 
 fromBool :: Bool -> String
 fromBool True  = "true"
