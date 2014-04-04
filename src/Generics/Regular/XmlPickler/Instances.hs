@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -fno-warn-orphans #-}
-{-# LANGUAGE FlexibleInstances, ScopedTypeVariables #-}
+{-# LANGUAGE FlexibleInstances, ScopedTypeVariables, OverlappingInstances #-}
 -------------------------------------------------------------------------------
 -- |
 -- Module : Generics.Regular.XmlPickler

@@ -2,6 +2,7 @@
     TypeOperators
   , FlexibleContexts
   , ScopedTypeVariables
+  , OverlappingInstances
   #-}
 -------------------------------------------------------------------------------
 -- |
