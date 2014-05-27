@@ -1,27 +1,21 @@
 {-# OPTIONS_GHC -fno-warn-orphans #-}
-{-# LANGUAGE FlexibleInstances, ScopedTypeVariables, OverlappingInstances #-}
--------------------------------------------------------------------------------
--- |
--- Module : Generics.Regular.XmlPickler
--- Copyright : (c) 2009, typLAB
--- License : BSD3
---
--- Maintainer : typLAB <code@typlab.com>
--- Stability : Experimental
---
--- 'XmlPickler' instance for 'Bool' which converts to and from the Strings
+{-# LANGUAGE
+    FlexibleInstances
+  , OverlappingInstances
+  , ScopedTypeVariables
+  #-}
+-- | 'XmlPickler' instance for 'Bool' which converts to and from the Strings
 -- \"true\" and \"false\", and 'GXmlPickler' instance for 'K' 'String', which
 -- allows whitespace. These instances are automatically used if you
 -- import 'Generics.Regular.XmlPickler'.
---
--------------------------------------------------------------------------------
-module Generics.Regular.XmlPickler.Instances() where
+module Generics.Regular.XmlPickler.Instances () where
 
 import Data.Char (toLower)
 import Data.Text (Text, pack, unpack)
 import Generics.Regular
-import Generics.Regular.XmlPickler.Function
 import Text.XML.HXT.Arrow.Pickle
+
+import Generics.Regular.XmlPickler.Function
 
 -- * Boolean instance for XmlPickler.
 

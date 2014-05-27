@@ -1,34 +1,22 @@
 {-# LANGUAGE
-    TypeOperators
-  , FlexibleContexts
-  , ScopedTypeVariables
+    FlexibleContexts
   , OverlappingInstances
+  , ScopedTypeVariables
+  , TypeOperators
   #-}
--------------------------------------------------------------------------------
--- |
--- Module : Generics.Regular.XmlPickler.Function
--- Copyright : (c) 2009, typLAB
--- License : BSD3
---
--- Maintainer : typLAB <code@typlab.com>
--- Stability : Experimental
---
--- Generic XmlPickler. Use this module if you don't want the instances
+-- | Generic XmlPickler. Use this module if you don't want the instances
 -- from Generics.Regular.XmlPickler.Instances.
---
--------------------------------------------------------------------------------
 module Generics.Regular.XmlPickler.Function
   ( gxpickle
-  , GXmlPickler(..)
+  , GXmlPickler (..)
   , formatElement
   , xpEither
   ) where
 
 import Data.Char (toLower)
 import Generics.Regular
-import Text.XML.HXT.Core
-import Text.XML.HXT.Arrow.Pickle.Xml
 import Text.XML.HXT.Arrow.Pickle.Schema
+import Text.XML.HXT.Arrow.Pickle.Xml
 
 -- | The generic XmlPickler class. This gives generic xml picklers for
 -- the functors from 'Generics.Regular'. These are usually not used
