@@ -179,7 +179,6 @@ case_stat = do
   let b = StatB Nothing
   bidir "<statB/>" b
 
--- https://github.com/silkapp/generic-aeson/issues/2
 data X = X (Maybe Int) Int deriving (Eq, Show)
 deriveAll ''X "PFX"
 type instance PF X = PFX
@@ -198,14 +197,14 @@ data X1 = X1 { x1a :: Maybe Int, x1b :: Int } deriving (Eq, Show)
 deriveAll ''X1 "PFX1"
 type instance PF X1 = PFX1
 instance XmlPickler X1 where xpickle = gxpickle
---case_recordWithMaybeField = do
---  let a = X1 { x1a = Just 1, x1b = 2 }
---  bidir "<x1><x1a>1</x1a><x1b>2</x1b></x1>" a
---
---  let b = X1 Nothing 2
---  bidir "<x1><x1b>2</x1b></x1>" b
---  eq (Nothing :: Maybe X1)
---     (maybeFromXML "{\"x1a\":true,\"x1b\":2}")
+case_recordWithMaybeField = do
+  let a = X1 { x1a = Just 1, x1b = 2 }
+  bidir "<x1><x1a>1</x1a><x1b>2</x1b></x1>" a
+
+  let b = X1 Nothing 2
+  bidir "<x1><x1b>2</x1b></x1>" b
+  eq (Nothing :: Maybe X1)
+     (maybeFromXML "{\"x1a\":true,\"x1b\":2}")
 
 data X2 = X2 { x2 :: Maybe Int }
   deriving (Eq, Show)
