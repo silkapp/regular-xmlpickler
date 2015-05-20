@@ -1,6 +1,8 @@
 # regular-xmlpickler
 [![Build Status](https://travis-ci.org/silkapp/regular-xmlpickler.svg?branch=master)](https://travis-ci.org/silkapp/regular-xmlpickler)
 
+### This package is deprecated in favor of [generic-xmlpickler](http://github.com/silkapp/generic-xmlpickler)
+
 This package allows you to automatically derive hxt picklers
 (conversions to and from xml) using the regular generics package.
 
